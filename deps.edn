@@ -1,0 +1,27 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure         {:mvn/version "1.10.1"}
+        http-kit                    {:mvn/version "2.3.0"}
+        environ                     {:mvn/version "1.1.0"}
+        cheshire                    {:mvn/version "5.9.0"}
+        org.clojure/data.csv        {:mvn/version "0.1.4"}
+
+        org.clojure/test.check      {:mvn/version "0.9.0"}
+        com.taoensso/tufte          {:mvn/version "2.0.1"}
+        org.clojure/tools.logging   {:mvn/version "0.4.1"}
+        com.cognitect.aws/api       {:mvn/version "0.8.408"}
+        com.cognitect.aws/endpoints {:mvn/version "1.1.11.699"}
+        com.cognitect.aws/s3        {:mvn/version "784.2.593.0"}
+        }
+ :aliases
+ {:run   {:main-opts ["-m" "perun.core"]}
+  :test  {:extra-paths ["test"]
+          :extra-deps {com.cognitect/test-runner  {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                   :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}
+                       com.gfredericks/test.chuck {:mvn/version "0.2.9"}}
+          :main-opts ["-m" "cognitect.test-runner"]}
+  :check {:extra-deps {org.clojure/test.check {:mvn/version "0.9.0"}}}
+  :bench {:extra-paths ["bench" "classes"]
+          :extra-deps {jmh-clojure        {:mvn/version "0.2.1"}}
+          :main-opts ["-m" "bench.run"]}
+  :jar   {:extra-deps {seancorfield/depstar {:mvn/version "0.2.1"}}
+          :main-opts ["-m" "hf.depstar.uberjar" "perun.jar"]}}}
